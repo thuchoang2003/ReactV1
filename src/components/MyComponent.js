@@ -1,26 +1,27 @@
 import React from "react";
+import AddUser from "./AddUser";
+import DisplayInfor from "./DisplayInfor";
 class MyComponent extends React.Component {
   state = {
-    name: "Admin",
-    address: "Da Nang",
-    age: 26,
+    listUsers: [
+      { id: 1, name: "nguyen van a", age: "20" },
+      { id: 2, name: "nguyen van b", age: "22" },
+      { id: 3, name: "nguyen van c", age: "30" },
+      { id: 4, name: "nguyen van d", age: "69" },
+    ],
   };
-  handleclick(event) {
-    console.log("hehe");
-    alert("hehe");
-    console.log(event);
-  }
-  handleonMouseOver(event) {
-    console.log(event);
-  }
-
+  handleAddNewUser = (userObj) => {
+    this.setState({
+      listUsers: [...this.state.listUsers, userObj],
+    });
+  };
   //JSX
   render() {
     return (
       <div>
-        My name is {this.state.name} and i'm from {this.state.address}
-        <button onMouseOver={this.handleonMouseOver}>houver me</button>
-        <button onClick={this.handleclick}>click me</button>
+        <AddUser handleAddNewUser={this.handleAddNewUser}></AddUser>
+        <br />
+        <DisplayInfor listUsers={this.state.listUsers}></DisplayInfor>
       </div>
     );
   }
