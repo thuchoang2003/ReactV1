@@ -1,30 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import AddUser from "./AddUser";
 import DisplayInfor from "./DisplayInfor";
-class MyComponent extends React.Component {
-  state = {
-    listUsers: [
-      { id: 1, name: "nguyen van a", age: "20" },
-      { id: 2, name: "nguyen van b", age: "22" },
-      { id: 3, name: "nguyen van c", age: "30" },
-      { id: 4, name: "nguyen van d", age: "69" },
-    ],
+
+const MyComponent = (props) => {
+  const [listUsers, setListUser] = useState([
+    { id: 1, name: "nguyen van a", age: "20" },
+    { id: 2, name: "nguyen van b", age: "22" },
+    { id: 3, name: "nguyen van c", age: "30" },
+    { id: 4, name: "nguyen van d", age: "69" },
+  ]);
+  const handleAddNewUser = (userObject) => {
+    setListUser([userObject, ...listUsers]);
   };
-  handleAddNewUser = (userObj) => {
-    this.setState({
-      listUsers: [...this.state.listUsers, userObj],
-    });
+  const handleDeleteUser = (id) => {
+    let listUsersClone = [...listUsers];
+    listUsersClone = listUsersClone.filter((item) => item.id !== id);
+    setListUser(listUsersClone);
   };
-  //JSX
-  render() {
-    return (
-      <div>
-        <AddUser handleAddNewUser={this.handleAddNewUser}></AddUser>
-        <br />
-        <DisplayInfor listUsers={this.state.listUsers}></DisplayInfor>
-      </div>
-    );
-  }
-}
+
+  return (
+    <>
+      <AddUser handleAddNewUser={handleAddNewUser}></AddUser>
+      <br />
+      <DisplayInfor
+        listUsers={listUsers}
+        handleDeleteUser={handleDeleteUser}
+      ></DisplayInfor>
+    </>
+  );
+};
 
 export default MyComponent;

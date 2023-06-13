@@ -1,61 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 
-class AddUser extends React.Component {
-  state = {
-    name: "Admin",
-    address: "Da Nang",
-    age: 26,
-  };
+const AddUser = (props) => {
+  const [name, setName] = useState("Admin");
+  const [address, setAddress] = useState("Da Nang");
+  const [age, setAge] = useState(26);
 
-  handleonChangeInputName = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
+  const handleonChangeInputName = (event) => {
+    setName(event.target.value);
   };
-  handleonChangeInputAge = (event) => {
-    this.setState({
-      age: event.target.value,
-    });
+  const handleonChangeInputAge = (event) => {
+    setAge(event.target.value);
   };
-  handleOnSubmit = (event) => {
+  const handleOnSubmit = (event) => {
     event.preventDefault();
-    this.props.handleAddNewUser({
+    props.handleAddNewUser({
       id: Math.floor(Math.random() * 100 + 1) + "-random",
-      name: this.state.name,
-      age: this.state.age,
+      name: name,
+      age: age,
     });
   };
-  render() {
-    return (
-      <div>
-        My name is {this.state.name} and i'm from {this.state.address}, i'm{" "}
-        {this.state.age} years old
-        <form
-          onSubmit={(event) => {
-            this.handleOnSubmit(event);
+  return (
+    <div>
+      My name is {name} and i'm from {address}, i'm {age} years old
+      <form
+        onSubmit={(event) => {
+          handleOnSubmit(event);
+        }}
+      >
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => {
+            handleonChangeInputName(event);
           }}
-        >
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={(event) => {
-              this.handleonChangeInputName(event);
-            }}
-          ></input>
-          <br />
-          <input
-            type="text"
-            value={this.state.age}
-            onChange={(event) => {
-              this.handleonChangeInputAge(event);
-            }}
-          ></input>
-          <br />
-          <button>Submit</button>
-        </form>
-      </div>
-    );
-  }
-}
-
+        ></input>
+        <br />
+        <input
+          type="text"
+          value={age}
+          onChange={(event) => {
+            handleonChangeInputAge(event);
+          }}
+        ></input>
+        <br />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
 export default AddUser;
