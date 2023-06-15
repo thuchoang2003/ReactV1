@@ -7,6 +7,7 @@ import {
   FaGithub,
   FaRegLaughWink,
   FaHeart,
+  FaFacebook,
 } from "react-icons/fa";
 import {
   ProSidebar,
@@ -17,6 +18,8 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
+import { IoIosPaper } from "react-icons/io";
+import { MdDashboard } from "react-icons/md";
 const Sidebar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
   return (
@@ -41,28 +44,24 @@ const Sidebar = (props) => {
               whiteSpace: "nowrap",
             }}
           >
+            <IoIosPaper size={"3em"} />
             Thi Thử Toeic
           </div>
         </SidebarHeader>
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem
-              icon={<FaTachometerAlt />}
-              suffix={<span className="badge red">New</span>}
-            >
-              dashboard
-            </MenuItem>
-            <MenuItem icon={<FaGem />}> components </MenuItem>
+            <MenuItem icon={<FaTachometerAlt />}>Dashboard</MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu
-              suffix={<span className="badge yellow">3</span>}
-              icon={<FaRegLaughWink />}
+              // suffix={<span className="badge yellow">3</span>}
+              icon={<FaGem />}
+              title="Features"
             >
-              <MenuItem> 1</MenuItem>
-              <MenuItem> 2</MenuItem>
-              <MenuItem> 3</MenuItem>
+              <MenuItem> Quản Lý Users</MenuItem>
+              <MenuItem> Quản Lý Bài Quizz</MenuItem>
+              <MenuItem> Quản lý Câu Hỏi</MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
@@ -75,20 +74,21 @@ const Sidebar = (props) => {
             }}
           >
             <a
-              href="https://github.com/azouaoui-med/react-pro-sidebar"
+              href="https://www.facebook.com/profile.php?id=100017717868787"
               target="_blank"
               className="sidebar-btn"
               rel="noopener noreferrer"
             >
-              <FaGithub />
+              <FaFacebook size={"25px"} />
               <span
                 style={{
                   whiteSpace: "nowrap",
                   textOverflow: "ellipsis",
                   overflow: "hidden",
+                  marginLeft: "10px",
                 }}
               >
-                viewSource
+                Thông tin chi tiết
               </span>
             </a>
           </div>
