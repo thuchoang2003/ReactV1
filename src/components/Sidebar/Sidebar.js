@@ -20,6 +20,7 @@ import {
 } from "react-pro-sidebar";
 import { IoIosPaper } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
 const Sidebar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
   return (
@@ -51,7 +52,10 @@ const Sidebar = (props) => {
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem icon={<FaTachometerAlt />}>Dashboard</MenuItem>
+            <MenuItem icon={<FaTachometerAlt />}>
+              Dashboard
+              <Link to="/admins"></Link>
+            </MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu
@@ -59,7 +63,11 @@ const Sidebar = (props) => {
               icon={<FaGem />}
               title="Features"
             >
-              <MenuItem> Quản Lý Users</MenuItem>
+              <MenuItem>
+                {" "}
+                Quản Lý Users
+                <Link to="/admins/manage-users"></Link>
+              </MenuItem>
               <MenuItem> Quản Lý Bài Quizz</MenuItem>
               <MenuItem> Quản lý Câu Hỏi</MenuItem>
             </SubMenu>
