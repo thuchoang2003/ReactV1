@@ -11,4 +11,9 @@ const postCreateNewUser = (email, password, username, role, image) => {
   return response;
 };
 
-export { postCreateNewUser };
+const getAllUser = () => {
+  let response = instance.get("/participant/all");
+  return response;
+};
+
+export { postCreateNewUser, getAllUser };

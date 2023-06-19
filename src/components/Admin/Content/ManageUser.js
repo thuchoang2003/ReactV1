@@ -2,6 +2,7 @@ import { useState } from "react";
 import Example from "./ModalCreateUser";
 import "../../../assets/scss/ManagerUser.scss";
 import { BsPlusCircleFill } from "react-icons/bs";
+import TableUser from "../../User/TableUser";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
@@ -18,7 +19,9 @@ const ManageUser = (props) => {
             Add New User
           </button>
         </div>
-        <div className="table-users-container">table users</div>
+        <div className="table-users-container">
+          <TableUser></TableUser>
+        </div>
         <Example
           show={showModalCreateUser}
           setShow={setShowModalCreateUser}
