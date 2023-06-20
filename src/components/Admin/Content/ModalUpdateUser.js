@@ -1,21 +1,24 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../../services/userServices.js";
-const Example = (props) => {
-  const { show, setShow } = props;
+import _ from "lodash";
+import { updateUser } from "../../../services/userServices.js";
+const ModalUpdateUser = (props) => {
+  const { show, setShow, dataUpdateUser } = props;
+
   // const [show, setShow] = useState(false);
 
   const handleClose = () => {
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setRole("USER");
-    setImage("");
-    setPreviewimage("");
+    // setEmail("");
+    // setPassword("");
+    // setUsername("");
+    // setRole("USER");
+    // setImage("");
+    // setPreviewimage("");
     setShow(false);
   };
 
@@ -28,7 +31,21 @@ const Example = (props) => {
   const [image, setImage] = useState("");
   const [previewimage, setPreviewimage] = useState("");
 
+  useEffect(() => {
+    if (!_.isEmpty(dataUpdateUser)) {
+      setEmail(dataUpdateUser.email);
+      setUsername(dataUpdateUser.username);
+      setRole(dataUpdateUser.role);
+      setImage("");
+      if (dataUpdateUser.image) {
+        setPreviewimage("data:image/jpeg;base64," + dataUpdateUser.image);
+      }
+    }
+  }, [dataUpdateUser]);
+
   const handleUploadImage = (event) => {
+    // setPreviewimage("");
+    // setImage("");
     if (event.target && event.target.files && event.target.files[0]) {
       setPreviewimage(URL.createObjectURL(event.target.files[0]));
       setImage(event.target.files[0]);
@@ -41,28 +58,16 @@ const Example = (props) => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
-  const handleSubmitUser = async () => {
-    const data = new FormData();
-
-    if (!validateEmail(email)) {
-      toast.error("Invalid email!");
-      return;
-    }
-
-    if (!password) {
-      toast.error("Invalid password!");
-      return;
-    }
-    //submit data
-    let res = await postCreateNewUser(email, password, username, role, image);
-    console.log(res);
-
+  const handleSubmitUpdateUser = async () => {
+    const id = dataUpdateUser.id;
+    let res = await updateUser(id, username, role, image);
     if (res && res.EC === 0) {
-      handleClose();
       toast.success(res.EM);
       await props.getAllUsers();
+      handleClose();
     } else {
-      toast.error(res.EM);
+      toast.success(res.EM);
+      handleClose();
     }
   };
 
@@ -79,7 +84,7 @@ const Example = (props) => {
         className="modalAddUser"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>Update A User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form class="row g-3">
@@ -92,6 +97,7 @@ const Example = (props) => {
                 class="form-control"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                disabled
               />
             </div>
             <div class="col-md-6">
@@ -103,6 +109,7 @@ const Example = (props) => {
                 class="form-control"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
+                disabled
               />
             </div>
 
@@ -160,7 +167,7 @@ const Example = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleSubmitUser()}>
+          <Button variant="primary" onClick={() => handleSubmitUpdateUser()}>
             Save
           </Button>
         </Modal.Footer>
@@ -168,4 +175,4 @@ const Example = (props) => {
     </>
   );
 };
-export default Example;
+export default ModalUpdateUser;

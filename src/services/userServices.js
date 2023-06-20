@@ -15,5 +15,13 @@ const getAllUser = () => {
   let response = instance.get("/participant/all");
   return response;
 };
-
-export { postCreateNewUser, getAllUser };
+const updateUser = (id, username, role, image) => {
+  const data = new FormData();
+  data.append("id", id);
+  data.append("username", username);
+  data.append("role", role);
+  data.append("userImage", image);
+  let response = instance.put("/participant", data);
+  return response;
+};
+export { postCreateNewUser, getAllUser, updateUser };
