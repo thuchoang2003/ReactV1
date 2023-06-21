@@ -24,4 +24,8 @@ const updateUser = (id, username, role, image) => {
   let response = instance.put("/participant", data);
   return response;
 };
-export { postCreateNewUser, getAllUser, updateUser };
+const deleteUser = (id) => {
+  let response = instance.delete("/participant", { data: { id: id } });
+  return response;
+};
+export { postCreateNewUser, getAllUser, updateUser, deleteUser };
