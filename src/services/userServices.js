@@ -28,4 +28,14 @@ const deleteUser = (id) => {
   let response = instance.delete("/participant", { data: { id: id } });
   return response;
 };
-export { postCreateNewUser, getAllUser, updateUser, deleteUser };
+const getUserWithPage = (page, limit) => {
+  let response = instance.get(`/participant?page=${page}&limit=${limit}`);
+  return response;
+};
+export {
+  postCreateNewUser,
+  getAllUser,
+  updateUser,
+  deleteUser,
+  getUserWithPage,
+};

@@ -5,8 +5,10 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import TableUser from "../../User/TableUser";
 import { useEffect } from "react";
 import { getAllUser } from "../../../services/userServices.js";
+import { getUserWithPage } from "../../../services/userServices.js";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserWithPage from "../../User/TableUserWithPage";
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
@@ -14,15 +16,25 @@ const ManageUser = (props) => {
   const [dataUpdateUser, setdataUpdateUser] = useState({});
   const [dataDeleteUser, setdataDeleteUser] = useState({});
   const [listUsers, setListUsers] = useState([]);
+  const [pageLimit, setpageLimit] = useState(11);
+  const [pageCount, setpageCount] = useState(2);
   const getAllUsers = async () => {
     let res = await getAllUser();
     if (res.EC === 0 && res) {
       setListUsers(res.DT);
     }
   };
+  const getAllUserWithPage = async (page, limit) => {
+    let res = await getUserWithPage(page, pageLimit);
+    if (res.EC === 0 && res) {
+      setListUsers(res.DT.users);
+      setpageCount(res.DT.totalPages);
+    }
+  };
 
   useEffect(() => {
-    getAllUsers();
+    // getAllUsers();
+    getAllUserWithPage(1, pageLimit);
   }, []);
 
   const handleClickBtnUser = (infoUser) => {
@@ -48,29 +60,40 @@ const ManageUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <TableUser
+          {/* <TableUser
             listUsers={listUsers}
             handleClickBtnUser={handleClickBtnUser}
             handleClickBtnDeleteUser={handleClickBtnDeleteUser}
             setShow={setShowModalUpdateUser}
-          ></TableUser>
+          ></TableUser> */}
+          <TableUserWithPage
+            listUsers={listUsers}
+            handleClickBtnUser={handleClickBtnUser}
+            handleClickBtnDeleteUser={handleClickBtnDeleteUser}
+            getAllUserWithPage={getAllUserWithPage}
+            pageLimit={pageLimit}
+            pageCount={pageCount}
+          />
         </div>
         <Example
           show={showModalCreateUser}
           setShow={setShowModalCreateUser}
-          getAllUsers={getAllUsers}
+          getAllUserWithPage={getAllUserWithPage}
+          pageLimit={pageLimit}
         ></Example>
         <ModalUpdateUser
           show={showModalUpdateUser}
           setShow={setShowModalUpdateUser}
           dataUpdateUser={dataUpdateUser}
-          getAllUsers={getAllUsers}
+          getAllUserWithPage={getAllUserWithPage}
+          pageLimit={pageLimit}
         />
         <ModalDeleteUser
           show={showModalDeleteUser}
           setShow={setShowModalDeleteUser}
           dataDeleteUser={dataDeleteUser}
-          getAllUsers={getAllUsers}
+          getAllUserWithPage={getAllUserWithPage}
+          pageLimit={pageLimit}
         />
       </div>
     </div>

@@ -63,7 +63,7 @@ const ModalUpdateUser = (props) => {
     let res = await updateUser(id, username, role, image);
     if (res && res.EC === 0) {
       toast.success(res.EM);
-      await props.getAllUsers();
+      await props.getAllUserWithPage(1, props.pageLimit);
       handleClose();
     } else {
       toast.success(res.EM);

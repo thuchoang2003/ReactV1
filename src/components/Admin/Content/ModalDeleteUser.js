@@ -5,7 +5,7 @@ import { deleteUser } from "../../../services/userServices.js";
 import { toast } from "react-toastify";
 
 const ModalDeleteUser = (props) => {
-  const { show, setShow, dataDeleteUser, getAllUsers } = props;
+  const { show, setShow, dataDeleteUser } = props;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -16,11 +16,10 @@ const ModalDeleteUser = (props) => {
     if (res && res.EC === 0) {
       toast.success(res.EM);
       handleClose();
-      await getAllUsers();
+      await props.getAllUserWithPage(1, props.pageLimit);
     } else {
       toast.error(res.EM);
     }
-    console.log(res);
   };
 
   return (

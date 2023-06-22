@@ -60,7 +60,7 @@ const Example = (props) => {
     if (res && res.EC === 0) {
       handleClose();
       toast.success(res.EM);
-      await props.getAllUsers();
+      await props.getAllUserWithPage(1, props.pageLimit);
     } else {
       toast.error(res.EM);
     }
