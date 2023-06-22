@@ -1,14 +1,41 @@
 import "../../../src/assets/scss/Login.scss";
 import Form from "react-bootstrap/Form";
 import { FcGoogle } from "react-icons/fc";
-
 import { BsFacebook } from "react-icons/bs";
+import { userLogin } from "../../../src/services/userServices.js";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    let res = await userLogin(email, password);
+    if (res && res.EC === 0) {
+      toast.success(res.EM);
+      navigate("/");
+    } else {
+      toast.error(res.EM);
+    }
+  };
+  const handleClickSignup = (event) => {
+    event.preventDefault();
+    navigate("/register");
+  };
   return (
     <>
       <div className="login-header">
         <span>Don't have an account yet?</span>
-        <button>Sign up</button>
+        <button onClick={(event) => handleClickSignup(event)}>Sign up</button>
       </div>
       <div className="login-main">
         <div className="login-main__title">Thi Thử Toeic</div>
@@ -23,6 +50,7 @@ const Login = () => {
                 type="email"
                 placeholder="Enter email"
                 className="login-main__form--input"
+                onChange={(event) => handleChangeEmail(event)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -33,12 +61,13 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 className="login-main__form--input"
+                onChange={(event) => handleChangePassword(event)}
               />
             </Form.Group>
             <div className="login-main__linktoForgotPass">
               <a href="#">Forgot password</a>
             </div>
-            <button>Login</button>
+            <button onClick={(event) => handleLogin(event)}>Login</button>
           </Form>
         </div>
         <div className="login-main__footer">

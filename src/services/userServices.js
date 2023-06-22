@@ -32,10 +32,29 @@ const getUserWithPage = (page, limit) => {
   let response = instance.get(`/participant?page=${page}&limit=${limit}`);
   return response;
 };
+const userLogin = (email, password) => {
+  const data = {
+    email: email,
+    password: password,
+  };
+  let response = instance.post("/login", data);
+  return response;
+};
+const userRegister = (email, password, username) => {
+  const data = {
+    email: email,
+    password: password,
+    username: username,
+  };
+  let response = instance.post("/register", data);
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
   updateUser,
   deleteUser,
   getUserWithPage,
+  userLogin,
+  userRegister,
 };
