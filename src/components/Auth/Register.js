@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { userRegister } from "../../../src/services/userServices.js";
 import { toast } from "react-toastify";
+
 const Register = () => {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");

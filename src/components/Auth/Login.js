@@ -6,9 +6,11 @@ import { userLogin } from "../../../src/services/userServices.js";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   const handleChangeEmail = (event) => {
@@ -19,12 +21,13 @@ const Login = () => {
   };
   const handleLogin = async (event) => {
     event.preventDefault();
+
     let res = await userLogin(email, password);
     if (res && res.EC === 0) {
-      toast.success(res.EM);
+      dispatch(doLogin(res.DT));
       navigate("/");
     } else {
-      toast.error(res.EM);
+      alert(res.EM);
     }
   };
   const handleClickSignup = (event) => {
