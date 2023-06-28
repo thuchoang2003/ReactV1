@@ -20,9 +20,10 @@ import {
 } from "react-pro-sidebar";
 import { IoIosPaper } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Sidebar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
+  const navigate = useNavigate();
   return (
     <>
       <ProSidebar
@@ -46,7 +47,7 @@ const Sidebar = (props) => {
             }}
           >
             <IoIosPaper size={"3em"} />
-            Thi Thử Toeic
+            <span onClick={() => navigate("/")}>Thi Thử Toeic</span>
           </div>
         </SidebarHeader>
 
@@ -68,7 +69,11 @@ const Sidebar = (props) => {
                 Quản Lý Users
                 <Link to="/admins/manage-users"></Link>
               </MenuItem>
-              <MenuItem> Quản Lý Bài Quizz</MenuItem>
+              <MenuItem>
+                {" "}
+                Quản Lý Bài Quizz
+                <Link to="/admins/manage-quizz"></Link>
+              </MenuItem>
               <MenuItem> Quản lý Câu Hỏi</MenuItem>
             </SubMenu>
           </Menu>

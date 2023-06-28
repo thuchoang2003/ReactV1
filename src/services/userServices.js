@@ -61,6 +61,19 @@ const postDataQuizz = (data) => {
   let response = instance.post("/quiz-submit", data);
   return response;
 };
+const postCreateNewQuizz = (description, name, difficulty, image) => {
+  let data = new FormData();
+  data.append("description", description);
+  data.append("name", name);
+  data.append("difficulty", difficulty);
+  data.append("quizImage", image);
+  let response = instance.post("/quiz", data);
+  return response;
+};
+const getAllQuizzByAdmin = () => {
+  let response = instance.get("/quiz/all");
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -72,4 +85,6 @@ export {
   getAllQuizzByUser,
   getQuestionsByQuizzId,
   postDataQuizz,
+  postCreateNewQuizz,
+  getAllQuizzByAdmin,
 };

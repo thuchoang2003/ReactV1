@@ -17,6 +17,7 @@ import "nprogress/nprogress.css";
 import { PersistGate } from "redux-persist/integration/react";
 import ListQuestionByQuizzId from "./components/User/ListQuestionByQuizzId";
 import NotFound from "./components/User/NotFound";
+import ManageQuizz from "./components/Admin/Content/Quizz/ManagerQuizz";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,6 +34,7 @@ root.render(
           <Route path="/admins" element={<Admin />}>
             <Route index element={<Dashboard />} />
             <Route path="manage-users" element={<ManageUser />} />
+            <Route path="manage-quizz" element={<ManageQuizz />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />

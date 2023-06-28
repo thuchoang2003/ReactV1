@@ -1,0 +1,65 @@
+.quizz-container {
+  padding: 15px;
+  .title {
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .add-new {
+    legend {
+      font-size: 20px;
+    }
+    .more-actions {
+      .divSelect {
+        margin: 10px 0px;
+        label {
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .divImage {
+      .divImage-img {
+        label {
+          display: flex;
+          font-size: 18px;
+          align-items: center;
+          gap: 5px;
+          border: 1px solid red;
+          width: fit-content;
+          padding: 3px 10px;
+          border-radius: 5px;
+          background: #eeeeee;
+          border: none;
+          cursor: pointer;
+          &:hover {
+            background-color: #dcdcdc;
+          }
+        }
+      }
+      .divImage-previewImg {
+        height: 250px;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        img {
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+    .divBtn {
+      button {
+        margin: 10px 0px;
+        width: 70px;
+      }
+    }
+  }
+  .list-detail {
+  }
+}
