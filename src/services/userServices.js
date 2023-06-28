@@ -49,6 +49,18 @@ const userRegister = (email, password, username) => {
   let response = instance.post("/register", data);
   return response;
 };
+const getAllQuizzByUser = () => {
+  let response = instance.get("/quiz-by-participant");
+  return response;
+};
+const getQuestionsByQuizzId = (id) => {
+  let response = instance.get(`/questions-by-quiz?quizId=${id}`);
+  return response;
+};
+const postDataQuizz = (data) => {
+  let response = instance.post("/quiz-submit", data);
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -57,4 +69,7 @@ export {
   getUserWithPage,
   userLogin,
   userRegister,
+  getAllQuizzByUser,
+  getQuestionsByQuizzId,
+  postDataQuizz,
 };
