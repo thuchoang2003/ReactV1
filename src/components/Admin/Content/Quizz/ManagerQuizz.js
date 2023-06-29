@@ -8,6 +8,7 @@ import {
 } from "../../../../services/userServices.js";
 import TableQuizz from "./TableQuizz";
 import Accordion from "react-bootstrap/Accordion";
+import $ from "jquery";
 const ManageQuizz = (props) => {
   const options = [
     { value: "EASY", label: "EASY" },
@@ -38,6 +39,7 @@ const ManageQuizz = (props) => {
     if (event.target && event.target.files && event.target.files[0]) {
       setPreviewImage(URL.createObjectURL(event.target.files[0]));
       setImage(event.target.files[0]);
+      $(".divImage-previewImg").css("height", "600px");
     }
   };
   const handleClickBtnSave = async () => {
@@ -48,6 +50,13 @@ const ManageQuizz = (props) => {
       let res = await postCreateNewQuizz(description, name, type.value, image);
       if (res && res.EC === 0) {
         alert(res.EM);
+        getAllQuizz();
+        setName("");
+        setDescription("");
+        setType("");
+        setPreviewImage("");
+        setImage("");
+        $(".divImage-previewImg").css("height", "250px");
       } else alert(res.EM);
     }
   };
