@@ -46,13 +46,13 @@ const TableQuizz = (props) => {
                       <button className="btn btn-secondary">View</button>
                       <button
                         className="btn btn-info"
-                        // onClick={() => props.handleClickBtnUser(item)}
+                        onClick={() => props.handleClickUpdateQuizz(item)}
                       >
                         Edit
                       </button>
                       <button
                         className="btn btn-danger"
-                        // onClick={() => props.handleClickBtnDeleteUser(item)}
+                        onClick={() => props.handleClickDeleteQuizz(item)}
                       >
                         Delete
                       </button>

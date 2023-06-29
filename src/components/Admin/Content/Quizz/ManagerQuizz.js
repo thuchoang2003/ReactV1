@@ -5,10 +5,14 @@ import Select from "react-select";
 import {
   postCreateNewQuizz,
   getAllQuizzByAdmin,
+  deleteQuizzByAdmin,
+  updateQuizzbyAdmin,
 } from "../../../../services/userServices.js";
 import TableQuizz from "./TableQuizz";
 import Accordion from "react-bootstrap/Accordion";
 import $ from "jquery";
+import ModalDeleteQuizz from "./ModalDeleteQuizz";
+import ModalUpdateQuizz from "./ModalUpdateQuizz";
 const ManageQuizz = (props) => {
   const options = [
     { value: "EASY", label: "EASY" },
@@ -21,6 +25,10 @@ const ManageQuizz = (props) => {
   const [image, setImage] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [listQuizz, setListQuizz] = useState({});
+  const [showModalDeleteQuizz, setShowModalDeleteQuizz] = useState(false);
+  const [dataQuizzToDelete, setdataQuizztoDelete] = useState({});
+  const [dataQuizzToUpdate, setdataQuizztoUpdate] = useState({});
+  const [showModalUpdateQuizz, setShowModalUpdateQuizz] = useState(false);
 
   const getAllQuizz = async () => {
     let res = await getAllQuizzByAdmin();
@@ -59,6 +67,34 @@ const ManageQuizz = (props) => {
         $(".divImage-previewImg").css("height", "250px");
       } else alert(res.EM);
     }
+  };
+  const handleClickDeleteQuizz = (item) => {
+    setShowModalDeleteQuizz(true);
+    setdataQuizztoDelete(item);
+  };
+  const deleteQuizz = async (id) => {
+    let res = await deleteQuizzByAdmin(id);
+    if (res && res.EC === 0) {
+      alert(res.EM);
+      getAllQuizz();
+    } else alert(res.EM);
+  };
+  const handleClickUpdateQuizz = (item) => {
+    setShowModalUpdateQuizz(true);
+    setdataQuizztoUpdate(item);
+  };
+  const updateQuizz = async (id, description, name, difficulty, quizImage) => {
+    let res = await updateQuizzbyAdmin(
+      id,
+      description,
+      name,
+      difficulty,
+      quizImage
+    );
+    if (res && res.EC === 0) {
+      alert(res.EM);
+      getAllQuizz();
+    } else alert(res.EM);
   };
 
   return (
@@ -150,8 +186,25 @@ const ManageQuizz = (props) => {
       <div className="title">Manage Quizz</div>
 
       <div className="list-detail">
-        <TableQuizz listQuizz={listQuizz} />
+        <TableQuizz
+          listQuizz={listQuizz}
+          handleClickDeleteQuizz={handleClickDeleteQuizz}
+          setShowModalDeleteQuizz={setShowModalDeleteQuizz}
+          handleClickUpdateQuizz={handleClickUpdateQuizz}
+        />
       </div>
+      <ModalDeleteQuizz
+        show={showModalDeleteQuizz}
+        setShow={setShowModalDeleteQuizz}
+        deleteQuizz={deleteQuizz}
+        dataQuizzToDelete={dataQuizzToDelete}
+      />
+      <ModalUpdateQuizz
+        show={showModalUpdateQuizz}
+        setShow={setShowModalUpdateQuizz}
+        dataQuizzToUpdate={dataQuizzToUpdate}
+        updateQuizz={updateQuizz}
+      />
     </div>
   );
 };

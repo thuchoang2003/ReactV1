@@ -74,6 +74,20 @@ const getAllQuizzByAdmin = () => {
   let response = instance.get("/quiz/all");
   return response;
 };
+const deleteQuizzByAdmin = (id) => {
+  let response = instance.delete(`/quiz/${id}`);
+  return response;
+};
+const updateQuizzbyAdmin = (id, description, name, difficulty, quizImage) => {
+  let data = new FormData();
+  data.append("id", id);
+  data.append("description", description);
+  data.append("name", name);
+  data.append("difficulty", difficulty);
+  data.append("quizImage", quizImage);
+  let response = instance.put("/quiz", data);
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -87,4 +101,6 @@ export {
   postDataQuizz,
   postCreateNewQuizz,
   getAllQuizzByAdmin,
+  deleteQuizzByAdmin,
+  updateQuizzbyAdmin,
 };
