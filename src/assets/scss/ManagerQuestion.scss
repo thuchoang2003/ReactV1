@@ -1,0 +1,94 @@
+.header-content {
+  margin-left: 20px;
+  div {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  hr {
+    height: 2px;
+  }
+}
+.main-content {
+  margin-left: 20px;
+  .select-quizz {
+    width: 50%;
+    label {
+      font-size: 23px;
+      font-weight: 500;
+      padding: 15px 0px;
+    }
+    .div-select {
+      padding: 10px 0px;
+      .custom-select {
+        .css-1s2u09g-control {
+          height: 50px;
+        }
+      }
+    }
+  }
+  .add_new_questions {
+    width: 70%;
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      padding: 10px 0px;
+    }
+    .div-Questions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .form-floating {
+        width: 70%;
+        margin-top: 15px;
+        input {
+          height: 70px;
+        }
+        label {
+          font-size: 16px;
+          font-weight: 500;
+          margin-top: 10px;
+        }
+      }
+      .group-upload {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        span {
+          font-size: 18px;
+        }
+      }
+      .add_or_del_ques {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+  .div-answers {
+    .answer {
+      display: flex;
+      align-items: center;
+      margin-left: 40px;
+      gap: 20px;
+      .inputCheckBox {
+        width: 20px;
+        height: 20px;
+        margin-top: -20px;
+      }
+      .form-floating {
+        width: 60%;
+        input {
+          height: 70px;
+        }
+        label {
+          font-size: 16px;
+          font-weight: 500;
+          margin-top: 10px;
+        }
+      }
+      .add_or_del_answer {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+}
