@@ -120,7 +120,7 @@ const ListQuestionByQuizzId = (props) => {
             <button className="btn btn-primary">Part 6</button>
             <button className="btn btn-primary">Part 7</button>
           </div>
-          <div className="q-left__desOfPart">description Quizz</div>
+          <div className="q-left__desOfPart">{quizzTittle}</div>
           <Questions
             data={
               listQuestions && listQuestions.length > 0

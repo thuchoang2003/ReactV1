@@ -1,5 +1,5 @@
 import Select from "react-select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiFillCamera,
   AiFillPlusCircle,
@@ -8,57 +8,74 @@ import {
 import "../../../../assets/scss/ManagerQuestion.scss";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
+import {
+  getAllQuizzByAdmin,
+  postQuestionByAdmin,
+  postAnswerWithQuestionByAdmin,
+} from "../../../../services/userServices.js";
 
 const ManagerQuestion = (props) => {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  const [listQuizz, setListQuizz] = useState([]);
+  const getAllQuizz = async () => {
+    let res = await getAllQuizzByAdmin();
+    if (res && res.EC === 0) {
+      let listQuizzClone = res.DT.map((item, index) => {
+        return {
+          value: item.id,
+          label: item.name,
+        };
+      });
+      setListQuizz(listQuizzClone);
+    }
+  };
+
+  useEffect(() => {
+    getAllQuizz();
+  }, []);
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [listQuestion, setListQuestions] = useState([
-    {
-      id: uuidv4(),
-      description: "",
-      imageFile: "",
-      imageName: "",
-      answers: [
-        {
-          id: uuidv4(),
-          description: "",
-          isCorrect: false,
-        },
-        {
-          id: uuidv4(),
-          description: "",
-          isCorrect: false,
-        },
-        {
-          id: uuidv4(),
-          description: "",
-          isCorrect: false,
-        },
-        {
-          id: uuidv4(),
-          description: "",
-          isCorrect: false,
-        },
-      ],
-    },
-    {
-      id: uuidv4(),
-      description: "",
-      imageFile: "",
-      imageName: "",
-      answers: [
-        {
-          id: uuidv4(),
-          description: "",
-          isCorrect: false,
-        },
-      ],
-    },
+    // {
+    //   id: uuidv4(),
+    //   description: "",
+    //   imageFile: "",
+    //   imageName: "",
+    //   answers: [
+    //     {
+    //       id: uuidv4(),
+    //       description: "",
+    //       isCorrect: false,
+    //     },
+    //     {
+    //       id: uuidv4(),
+    //       description: "",
+    //       isCorrect: false,
+    //     },
+    //     {
+    //       id: uuidv4(),
+    //       description: "",
+    //       isCorrect: false,
+    //     },
+    //     {
+    //       id: uuidv4(),
+    //       description: "",
+    //       isCorrect: false,
+    //     },
+    //   ],
+    // },
+    // {
+    //   id: uuidv4(),
+    //   description: "",
+    //   imageFile: "",
+    //   imageName: "",
+    //   answers: [
+    //     {
+    //       id: uuidv4(),
+    //       description: "",
+    //       isCorrect: false,
+    //     },
+    //   ],
+    // },
   ]);
 
   const handleChangeInput = (questionId, answerId) => {
@@ -159,7 +176,37 @@ const ManagerQuestion = (props) => {
     });
     setListQuestions(listQuestionClone);
   };
-  console.log(listQuestion);
+  const handlePostQuestion = async (quizId, description, questionImage) => {
+    let res = await postQuestionByAdmin(quizId, description, questionImage);
+    if (res && res.EC === 0) return res.DT;
+  };
+  const handlePostAnswer = async (description, correct_answer, question_id) => {
+    let res = await postAnswerWithQuestionByAdmin(
+      description,
+      correct_answer,
+      question_id
+    );
+    if (res && res.EC === 0) return res.DT;
+  };
+  const handleClickSave = async () => {
+    const quizId = selectedOption.value;
+    await Promise.all(
+      listQuestion.map(async (item) => {
+        const q = await handlePostQuestion(
+          +quizId,
+          item.description,
+          item.imageFile
+        );
+
+        await Promise.all(
+          item.answers.map(async (answer) => {
+            await handlePostAnswer(answer.description, answer.isCorrect, q.id);
+          })
+        );
+        console.log("check q ", q);
+      })
+    );
+  };
 
   return (
     <>
@@ -174,7 +221,7 @@ const ManagerQuestion = (props) => {
             <Select
               defaultValue={selectedOption}
               onChange={setSelectedOption}
-              options={options}
+              options={listQuizz}
               className="custom-select"
             />
           </div>
@@ -357,6 +404,11 @@ const ManagerQuestion = (props) => {
             </div>
           </div> */}
         </div>
+      </div>
+      <div className="div-button">
+        <button className="btn btn-primary" onClick={() => handleClickSave()}>
+          Save Questions
+        </button>
       </div>
     </>
   );

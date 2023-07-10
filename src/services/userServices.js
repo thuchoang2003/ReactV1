@@ -88,6 +88,27 @@ const updateQuizzbyAdmin = (id, description, name, difficulty, quizImage) => {
   let response = instance.put("/quiz", data);
   return response;
 };
+const postQuestionByAdmin = (quizzId, description, questionImage) => {
+  let data = new FormData();
+  data.append("quiz_id", quizzId);
+  data.append("description", description);
+  data.append("questionImage", questionImage);
+  let response = instance.post("/question", data);
+  return response;
+};
+const postAnswerWithQuestionByAdmin = (
+  description,
+  correct_answer,
+  questionId
+) => {
+  const data = {
+    description: description,
+    correct_answer: correct_answer,
+    question_id: questionId,
+  };
+  let response = instance.post("/answer", data);
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -103,4 +124,6 @@ export {
   getAllQuizzByAdmin,
   deleteQuizzByAdmin,
   updateQuizzbyAdmin,
+  postQuestionByAdmin,
+  postAnswerWithQuestionByAdmin,
 };
