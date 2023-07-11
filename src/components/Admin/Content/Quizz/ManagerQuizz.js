@@ -13,6 +13,9 @@ import Accordion from "react-bootstrap/Accordion";
 import $ from "jquery";
 import ModalDeleteQuizz from "./ModalDeleteQuizz";
 import ModalUpdateQuizz from "./ModalUpdateQuizz";
+import UpdateQA from "./UpdateQA";
+import AssignQuizz from "./AssignQuizz";
+
 const ManageQuizz = (props) => {
   const options = [
     { value: "EASY", label: "EASY" },
@@ -99,7 +102,7 @@ const ManageQuizz = (props) => {
 
   return (
     <div className="quizz-container">
-      <Accordion defaultActiveKey="0">
+      <Accordion defaultActiveKey="1">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Manage Quizz</Accordion.Header>
           <Accordion.Body>
@@ -182,7 +185,11 @@ const ManageQuizz = (props) => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
+
+      <UpdateQA />
+      <AssignQuizz />
       <hr />
+
       <div className="title">Manage Quizz</div>
 
       <div className="list-detail">

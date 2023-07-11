@@ -1,5 +1,8 @@
 .quizz-container {
   padding: 15px;
+  .accordion {
+    margin: 10px 0px;
+  }
   .title {
     font-size: 25px;
     font-weight: 500;
@@ -61,5 +64,35 @@
     }
   }
   .list-detail {
+  }
+  .assign-maincontent {
+    .div-flex {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+
+      .div-selectquizz {
+        width: 40%;
+        .css-319lph-ValueContainer {
+          height: 50px;
+        }
+        .css-1s2u09g-control {
+          height: 50px;
+        }
+      }
+      .div-selectuser {
+        width: 40%;
+        .css-319lph-ValueContainer {
+          height: 50px;
+        }
+        .css-1s2u09g-control {
+          height: 50px;
+        }
+      }
+    }
+  }
+  .div-button {
+    margin-top: 20px;
   }
 }

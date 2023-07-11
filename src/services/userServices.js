@@ -109,6 +109,42 @@ const postAnswerWithQuestionByAdmin = (
   let response = instance.post("/answer", data);
   return response;
 };
+const putQuestionByAdmin = (id, quiz_id, description, questionImage) => {
+  let data = new FormData();
+  data.append("id", id);
+  data.append("quiz_id", quiz_id);
+  data.append("description", description);
+  data.append("questionImage", questionImage);
+  let response = instance.put("/question", data);
+  return response;
+};
+const putAnswerWithQuestionByAdmin = (
+  description,
+  correct_answer,
+  question_id,
+  answer_id
+) => {
+  const data = {
+    description: description,
+    correct_answer: correct_answer,
+    question_id: question_id,
+    answer_id: answer_id,
+  };
+  let response = instance.put("/answer", data);
+  return response;
+};
+const getAllQuestionAndAnswer = (quizzId) => {
+  let response = instance.get(`/quiz-with-qa/${quizzId}`);
+  return response;
+};
+const assignQuizzToUser = (quizId, userId) => {
+  const data = {
+    quizId: quizId,
+    userId: userId,
+  };
+  let response = instance.post("/quiz-assign-to-user", data);
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -125,5 +161,9 @@ export {
   deleteQuizzByAdmin,
   updateQuizzbyAdmin,
   postQuestionByAdmin,
+  putQuestionByAdmin,
   postAnswerWithQuestionByAdmin,
+  putAnswerWithQuestionByAdmin,
+  getAllQuestionAndAnswer,
+  assignQuizzToUser,
 };
