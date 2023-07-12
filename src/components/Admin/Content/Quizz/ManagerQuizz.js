@@ -182,24 +182,24 @@ const ManageQuizz = (props) => {
                 </div>
               </fieldset>
             </div>
+            <hr />
+            <div className="title">Manage Quizz</div>
+
+            <div className="list-detail">
+              <TableQuizz
+                listQuizz={listQuizz}
+                handleClickDeleteQuizz={handleClickDeleteQuizz}
+                setShowModalDeleteQuizz={setShowModalDeleteQuizz}
+                handleClickUpdateQuizz={handleClickUpdateQuizz}
+              />
+            </div>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
 
       <UpdateQA />
       <AssignQuizz />
-      <hr />
 
-      <div className="title">Manage Quizz</div>
-
-      <div className="list-detail">
-        <TableQuizz
-          listQuizz={listQuizz}
-          handleClickDeleteQuizz={handleClickDeleteQuizz}
-          setShowModalDeleteQuizz={setShowModalDeleteQuizz}
-          handleClickUpdateQuizz={handleClickUpdateQuizz}
-        />
-      </div>
       <ModalDeleteQuizz
         show={showModalDeleteQuizz}
         setShow={setShowModalDeleteQuizz}

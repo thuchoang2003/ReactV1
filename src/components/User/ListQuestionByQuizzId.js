@@ -10,6 +10,7 @@ import Questions from "./Question.js";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ModalResult from "./ModalResult.js";
+import RightContentQuestion from "./RightContentQuestion.js";
 const ListQuestionByQuizzId = (props) => {
   const navigate = useNavigate();
   const param = useParams();
@@ -127,6 +128,7 @@ const ListQuestionByQuizzId = (props) => {
                 ? listQuestions[index]
                 : []
             }
+            index={index}
             handleClickInput={handleClickInput}
           />
 
@@ -154,7 +156,12 @@ const ListQuestionByQuizzId = (props) => {
             </button>
           </div>
         </div>
-        <div className="q-right">Content Right</div>
+        <div className="q-right">
+          <RightContentQuestion
+            listQuestions={listQuestions}
+            setIndex={setIndex}
+          />
+        </div>
       </div>
       <ModalResult
         show={showModalResult}

@@ -83,5 +83,38 @@
     width: 30%;
     border: 1px solid #ccc;
     border-radius: 5px;
+    .div-time {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 10px;
+      font-size: 25px;
+      font-weight: 500;
+    }
+    .list-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      .question {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid #bdbdbd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 500;
+      }
+      .questionSelected {
+        background-color: #ccc;
+      }
+      .questionNotSelected {
+      }
+      .question:hover {
+        color: red;
+      }
+    }
   }
 }

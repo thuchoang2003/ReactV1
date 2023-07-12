@@ -19,6 +19,8 @@ import ListQuestionByQuizzId from "./components/User/ListQuestionByQuizzId";
 import NotFound from "./components/User/NotFound";
 import ManageQuizz from "./components/Admin/Content/Quizz/ManagerQuizz";
 import ManagerQuestion from "./components/Admin/Content/Question/ManagerQuestion";
+import ListQuizz from "./components/User/ListQuizz";
+import PrivateRoute from "./Route/PrivateRoute";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,11 +30,25 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
-            <Route path="users" element={<User />} />
+            <Route
+              path="users"
+              element={
+                <PrivateRoute>
+                  <ListQuizz />
+                </PrivateRoute>
+              }
+            />
             <Route path="/quizz/:id" element={<ListQuestionByQuizzId />} />
           </Route>
           <Route path="*" element={<NotFound />} />
-          <Route path="/admins" element={<Admin />}>
+          <Route
+            path="/admins"
+            element={
+              <PrivateRoute>
+                <Admin />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<Dashboard />} />
             <Route path="manage-users" element={<ManageUser />} />
             <Route path="manage-quizz" element={<ManageQuizz />} />
