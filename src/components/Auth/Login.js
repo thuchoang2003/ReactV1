@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
 import { FaEnvelopeOpenText } from "react-icons/fa";
+import Language from "../Header/Language";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const Login = () => {
       <div className="login-header">
         <span>Don't have an account yet?</span>
         <button onClick={(event) => handleClickSignup(event)}>Sign up</button>
+        <Language />
       </div>
       <div className="login-main">
         <div className="login-main__title">Thi Thử Toeic</div>

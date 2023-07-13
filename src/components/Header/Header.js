@@ -7,6 +7,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { postLogout } from "../../services/userServices.js";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction.js";
+import Language from "./Language.js";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -53,14 +54,7 @@ const Header = () => {
             <Nav.Link href="/admins">Admin</Nav.Link> */}
           </Nav>
           <Nav>
-            <NavDropdown
-              title="Việt Nam"
-              id="basic-nav-dropdown"
-              className="languages"
-            >
-              <NavDropdown.Item>Việt Nam</NavDropdown.Item>
-              <NavDropdown.Item>English</NavDropdown.Item>
-            </NavDropdown>
+            <Language />
             {isAuthenticated === false ? (
               <>
                 <button className="btn-login" onClick={() => handleLogin()}>

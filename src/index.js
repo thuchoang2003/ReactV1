@@ -21,42 +21,49 @@ import ManageQuizz from "./components/Admin/Content/Quizz/ManagerQuizz";
 import ManagerQuestion from "./components/Admin/Content/Question/ManagerQuestion";
 import ListQuizz from "./components/User/ListQuizz";
 import PrivateRoute from "./Route/PrivateRoute";
+import i18n from "./utils/i18n";
+import { Suspense } from "react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  // storeRedux
   <Provider store={store}>
+    {/* LocalStorage */}
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route index element={<HomePage />} />
+        {/* multi language */}
+        <Suspense fallback="...is loading">
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route index element={<HomePage />} />
+              <Route
+                path="users"
+                element={
+                  <PrivateRoute>
+                    <ListQuizz />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/quizz/:id" element={<ListQuestionByQuizzId />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
             <Route
-              path="users"
+              path="/admins"
               element={
                 <PrivateRoute>
-                  <ListQuizz />
+                  <Admin />
                 </PrivateRoute>
               }
-            />
-            <Route path="/quizz/:id" element={<ListQuestionByQuizzId />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-          <Route
-            path="/admins"
-            element={
-              <PrivateRoute>
-                <Admin />
-              </PrivateRoute>
-            }
-          >
-            <Route index element={<Dashboard />} />
-            <Route path="manage-users" element={<ManageUser />} />
-            <Route path="manage-quizz" element={<ManageQuizz />} />
-            <Route path="manage-questions" element={<ManagerQuestion />} />
-          </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Routes>
+            >
+              <Route index element={<Dashboard />} />
+              <Route path="manage-users" element={<ManageUser />} />
+              <Route path="manage-quizz" element={<ManageQuizz />} />
+              <Route path="manage-questions" element={<ManagerQuestion />} />
+            </Route>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </PersistGate>
 
