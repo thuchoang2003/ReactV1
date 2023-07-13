@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 
 const RightContentQuestion = (props) => {
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(5400);
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time - minutes * 60);
+
+  const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
   let { listQuestions } = props;
   useEffect(() => {
     if (time === 0) return;
@@ -28,7 +32,7 @@ const RightContentQuestion = (props) => {
   };
   return (
     <>
-      <div className="div-time">{time}</div>
+      <div className="div-time">{formattedTime}</div>
       <hr></hr>
       <div className="list-question">
         {listQuestions &&

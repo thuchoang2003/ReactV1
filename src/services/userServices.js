@@ -145,6 +145,14 @@ const assignQuizzToUser = (quizId, userId) => {
   let response = instance.post("/quiz-assign-to-user", data);
   return response;
 };
+const postLogout = (email, refresh_token) => {
+  const data = {
+    email: email,
+    refresh_token: refresh_token,
+  };
+  let response = instance.post("/logout", data);
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -166,4 +174,5 @@ export {
   putAnswerWithQuestionByAdmin,
   getAllQuestionAndAnswer,
   assignQuizzToUser,
+  postLogout,
 };

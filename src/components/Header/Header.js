@@ -2,8 +2,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { postLogout } from "../../services/userServices.js";
+import { toast } from "react-toastify";
+import { doLogout } from "../../redux/action/userAction.js";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,6 +14,19 @@ const Header = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const handleLogin = () => {
     navigate("/login");
+  };
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    const email = account.email;
+    const refresh_token = account.refresh_token;
+    let res = await postLogout(email, refresh_token);
+    if (res && res.EC === 0) {
+      dispatch(doLogout());
+      //clear local storage
+      navigate("/login");
+    } else {
+      toast.error(res.EM);
+    }
   };
 
   return (
@@ -37,6 +53,14 @@ const Header = () => {
             <Nav.Link href="/admins">Admin</Nav.Link> */}
           </Nav>
           <Nav>
+            <NavDropdown
+              title="Việt Nam"
+              id="basic-nav-dropdown"
+              className="languages"
+            >
+              <NavDropdown.Item>Việt Nam</NavDropdown.Item>
+              <NavDropdown.Item>English</NavDropdown.Item>
+            </NavDropdown>
             {isAuthenticated === false ? (
               <>
                 <button className="btn-login" onClick={() => handleLogin()}>
@@ -46,9 +70,10 @@ const Header = () => {
               </>
             ) : (
               <NavDropdown title="Setting" id="basic-nav-dropdown">
-                <NavDropdown.Item>Log in</NavDropdown.Item>
-                <NavDropdown.Item>Log out</NavDropdown.Item>
                 <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => handleLogout()}>
+                  Log out
+                </NavDropdown.Item>
               </NavDropdown>
             )}
           </Nav>

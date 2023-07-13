@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
+import { FaEnvelopeOpenText } from "react-icons/fa";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,7 +22,6 @@ const Login = () => {
   };
   const handleLogin = async (event) => {
     event.preventDefault();
-
     let res = await userLogin(email, password);
     if (res && res.EC === 0) {
       dispatch(doLogin(res.DT));
@@ -33,6 +33,17 @@ const Login = () => {
   const handleClickSignup = (event) => {
     event.preventDefault();
     navigate("/register");
+  };
+  const handleLoginEnter = async (event) => {
+    if (event.keyCode === 13 && event.key === "Enter") {
+      let res = await userLogin(email, password);
+      if (res && res.EC === 0) {
+        dispatch(doLogin(res.DT));
+        navigate("/");
+      } else {
+        alert(res.EM);
+      }
+    }
   };
   return (
     <>
@@ -65,6 +76,7 @@ const Login = () => {
                 placeholder="Password"
                 className="login-main__form--input"
                 onChange={(event) => handleChangePassword(event)}
+                onKeyDown={(event) => handleLoginEnter(event)}
               />
             </Form.Group>
             <div className="login-main__linktoForgotPass">

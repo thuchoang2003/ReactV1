@@ -1,4 +1,7 @@
-import { Get_Info_User_Success_Login } from "../action/userAction";
+import {
+  Get_Info_User_Success_Login,
+  User_Logout_Success,
+} from "../action/userAction";
 const INITIAL_STATE = {
   account: {
     access_token: "",
@@ -24,6 +27,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
           email: action?.payload?.email,
         },
         isAuthenticated: true,
+      };
+    case User_Logout_Success:
+      return {
+        ...state,
+        account: {
+          access_token: "",
+          refresh_token: "",
+          username: "",
+          role: "",
+          image: "",
+          email: "",
+        },
+        isAuthenticated: false,
       };
     default:
       return state;
