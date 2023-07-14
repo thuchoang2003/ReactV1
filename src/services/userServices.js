@@ -157,6 +157,25 @@ const getAllDataOverview = () => {
   let response = instance.get("/overview");
   return response;
 };
+const updateProfile = (username, userImage) => {
+  let data = new FormData();
+  data.append("username", username);
+  data.append("userImage", userImage);
+  let response = instance.post("/profile", data);
+  return response;
+};
+const changePassword = (current_password, new_password) => {
+  const data = {
+    current_password: current_password,
+    new_password: new_password,
+  };
+  let response = instance.post("/change-password", data);
+  return response;
+};
+const getHistory = () => {
+  let response = instance.get("/history");
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -180,4 +199,7 @@ export {
   assignQuizzToUser,
   postLogout,
   getAllDataOverview,
+  updateProfile,
+  changePassword,
+  getHistory,
 };

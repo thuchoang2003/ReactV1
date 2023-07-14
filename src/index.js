@@ -23,6 +23,7 @@ import ListQuizz from "./components/User/ListQuizz";
 import PrivateRoute from "./Route/PrivateRoute";
 import i18n from "./utils/i18n";
 import { Suspense } from "react";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -40,7 +41,10 @@ root.render(
                 path="users"
                 element={
                   <PrivateRoute>
-                    <ListQuizz />
+                    <PerfectScrollbar>
+                      {" "}
+                      <ListQuizz />
+                    </PerfectScrollbar>
                   </PrivateRoute>
                 }
               />

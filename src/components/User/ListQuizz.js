@@ -27,13 +27,17 @@ const ListQuizz = (props) => {
               <div
                 key={`${index}-card`}
                 class="card"
-                style={{ width: "18rem;" }}
+                // style={{ width: "18rem;" }}
               >
-                <img
-                  src={"data:image/jpeg;base64," + item.image}
-                  class="card-img-top"
-                  alt=""
-                />
+                <div className="div-img">
+                  {" "}
+                  <img
+                    src={"data:image/jpeg;base64," + item.image}
+                    class="card-img-top"
+                    alt=""
+                  />
+                </div>
+
                 <div class="card-body">
                   <h5 class="card-title">Quizz {index + 1}</h5>
                   <p class="card-text">{item.description}</p>

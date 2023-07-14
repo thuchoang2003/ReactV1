@@ -1,8 +1,23 @@
 .list-quizz-container {
   display: flex;
   gap: 50px;
-  img {
-    height: 300px;
-    width: 300px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(100vh - 100px);
+  .card {
+    width: 30%;
+    height: 600px;
+    .div-img {
+      height: 80%;
+      width: 100%;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
   }
 }
