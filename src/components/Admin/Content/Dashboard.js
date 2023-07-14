@@ -14,12 +14,14 @@ import {
 import { getAllDataOverview } from "../../../services/userServices.js";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation, Trans } from "react-i18next";
 const Dashboard = (props) => {
   const [totalUser, setTotalUser] = useState();
   const [totalQuizz, setTotalQuizz] = useState();
   const [totalQuestion, setTotalQuestion] = useState();
   const [totalAdmin, setTotalAdmin] = useState();
   const [dataChart, setdataChart] = useState([]);
+  const { t } = useTranslation();
   const getData = async () => {
     let res = await getAllDataOverview();
     if (res && res.EC === 0) {
@@ -57,19 +59,21 @@ const Dashboard = (props) => {
       <div className="content">
         <div className="c-left">
           <div className="c-left__item">
-            <span className="text-1">Total User</span>
+            <span className="text-1">{t("Admin.Dashboard.TotalUser")}</span>
             <span className="text-2">{totalUser}</span>
           </div>
           <div className="c-left__item">
-            <span className="text-1">Total Admin</span>
+            <span className="text-1">{t("Admin.Dashboard.TotalAdmin")}</span>
             <span className="text-2">{totalAdmin}</span>
           </div>
           <div className="c-left__item">
-            <span className="text-1">Total Quizzes</span>
+            <span className="text-1">{t("Admin.Dashboard.TotalQuizzes")}</span>
             <span className="text-2">{totalQuizz}</span>
           </div>
           <div className="c-left__item">
-            <span className="text-1">Total Question</span>
+            <span className="text-1">
+              {t("Admin.Dashboard.TotalQuestions")}
+            </span>
             <span className="text-2">{totalQuestion}</span>
           </div>
         </div>

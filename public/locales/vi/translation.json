@@ -6,5 +6,78 @@
       "login": "Bắt Đầu. Nó miễn phí",
       "user": " Làm bài thi"
     }
+  },
+  "header": {
+    "home": "Trang Chủ",
+    "Users": "Người Dùng",
+    "Admin": "Quản Trị Viên",
+    "Setting": "Cài Đặt",
+    "Login": "Đăng nhập",
+    "Logout": "Đăng Xuất",
+    "Signup": "Đăng Ký",
+    "Profile": "Trang Cá Nhân"
+  },
+  "Users": {
+    "StartNow": "Làm Bài Thi",
+    "Part-1": "Phần 1",
+    "Part-2": "Phần 2",
+    "Part-3": "Phần 3",
+    "Part-4": "Phần 4",
+    "Part-5": "Phần 5",
+    "Part-6": "Phần 6",
+    "Part-7": "Phần 7",
+    "Prev": "Trước",
+    "Next": "Sau",
+    "Submit": "Nộp Bài"
+  },
+  "Admin": {
+    "Dashboard": {
+      "TotalUser": "Tổng Người Dùng",
+      "TotalAdmin": "Tổng Quản Trị Viên",
+      "TotalQuizzes": "Tổng Bài Thi",
+      "TotalQuestions": "Tổng Câu Hỏi",
+      "Title": "Analytisc Dashboard",
+      "chart": {
+        "name1": "Bài Thi",
+        "name2": "Câu Hỏi",
+        "name3": "Người Dùng"
+      }
+    },
+    "header": {
+      "Setting": "Cài Đặt",
+      "Profile": "Trang Cá Nhân",
+      "Logout": "Đăng Xuất"
+    },
+    "Sidebar": {
+      "Dashboard": "Trang Chủ",
+      "Features": "Chức Năng",
+      "ManagerUser": "Quản lý người dùng",
+      "ManagerQuizz": "Quản lý bài thi",
+      "ManagerQuestion": "Quản lý câu hỏi",
+      "DetailInfor": "Thông tin chi tiết"
+    }
+  },
+  "ManagerUser": {
+    "title": "Quản lý người dùng",
+    "AddNewUser": "Thêm mới người dùng",
+    "ID": "ID",
+    "Name": "Tên",
+    "Role": "Chức Vụ",
+    "Actions": "Hành động",
+    "View": "Xem",
+    "Edit": "Sửa",
+    "Delete": "Xoá",
+    "Previous": "Trước",
+    "Next": "Sau"
+  },
+  "ModalAddNewUser": {
+    "title": "Thêm mới người dùng",
+    "Email": "Email",
+    "Password": "Mật khẩu",
+    "Username": "Tên tài khoản",
+    "Role": "Chức vụ",
+    "Upload": "Tải ảnh lên",
+    "Close": "Đóng",
+    "Save": "Lưu"
   }
 }

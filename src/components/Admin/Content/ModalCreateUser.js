@@ -5,10 +5,11 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../../services/userServices.js";
+import { useTranslation, Trans } from "react-i18next";
 const Example = (props) => {
   const { show, setShow } = props;
   // const [show, setShow] = useState(false);
-
+  const { t } = useTranslation();
   const handleClose = () => {
     setEmail("");
     setPassword("");
@@ -79,13 +80,13 @@ const Example = (props) => {
         className="modalAddUser"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>{t("ModalAddNewUser.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form class="row g-3">
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">
-                Email
+                {t("ModalAddNewUser.Email")}
               </label>
               <input
                 type="email"
@@ -96,7 +97,7 @@ const Example = (props) => {
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">
-                Password
+                {t("ModalAddNewUser.Password")}
               </label>
               <input
                 type="password"
@@ -108,7 +109,7 @@ const Example = (props) => {
 
             <div class="col-md-6">
               <label for="inputCity" class="form-label">
-                Username
+                {t("ModalAddNewUser.Username")}
               </label>
               <input
                 type="text"
@@ -119,7 +120,7 @@ const Example = (props) => {
             </div>
             <div class="col-md-4">
               <label for="inputState" class="form-label">
-                Role
+                {t("ModalAddNewUser.Role")}
               </label>
               <select
                 id="inputState"
@@ -138,7 +139,7 @@ const Example = (props) => {
                 class="form-label label-upload"
                 htmlFor="labelUpload"
               >
-                <BsPlusCircleFill size="1.5em" /> Upload file image
+                <BsPlusCircleFill size="1.5em" /> {t("ModalAddNewUser.Upload")}
               </label>
               <input
                 type="file"
@@ -158,10 +159,10 @@ const Example = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("ModalAddNewUser.Close")}
           </Button>
           <Button variant="primary" onClick={() => handleSubmitUser()}>
-            Save
+            {t("ModalAddNewUser.Save")}
           </Button>
         </Modal.Footer>
       </Modal>

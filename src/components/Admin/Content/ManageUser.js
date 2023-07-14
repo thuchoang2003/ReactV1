@@ -9,6 +9,7 @@ import { getUserWithPage } from "../../../services/userServices.js";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserWithPage from "../../User/TableUserWithPage";
+import { useTranslation, Trans } from "react-i18next";
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
@@ -18,6 +19,7 @@ const ManageUser = (props) => {
   const [listUsers, setListUsers] = useState([]);
   const [pageLimit, setpageLimit] = useState(11);
   const [pageCount, setpageCount] = useState(2);
+  const { t } = useTranslation();
   const getAllUsers = async () => {
     let res = await getAllUser();
     if (res.EC === 0 && res) {
@@ -48,7 +50,7 @@ const ManageUser = (props) => {
 
   return (
     <div className="manage-user-container">
-      <div className="title">Manage User</div>
+      <div className="title">{t("ManagerUser.title")}</div>
       <div className="users-content">
         <div className="btn-add-new">
           <button
@@ -56,7 +58,7 @@ const ManageUser = (props) => {
             onClick={() => setShowModalCreateUser(true)}
           >
             <BsPlusCircleFill />
-            Add New User
+            {t("ManagerUser.AddNewUser")}
           </button>
         </div>
         <div className="table-users-container">

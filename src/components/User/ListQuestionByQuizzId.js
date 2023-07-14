@@ -11,7 +11,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ModalResult from "./ModalResult.js";
 import RightContentQuestion from "./RightContentQuestion.js";
+import { useTranslation, Trans } from "react-i18next";
 const ListQuestionByQuizzId = (props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const param = useParams();
   const id = param.id;
@@ -114,13 +116,13 @@ const ListQuestionByQuizzId = (props) => {
             Quizz {idQuizz} : {quizzTittle}
           </div>
           <div className="q-left__part">
-            <button className="btn btn-primary">Part 1</button>
-            <button className="btn btn-primary">Part 2</button>
-            <button className="btn btn-primary">Part 3</button>
-            <button className="btn btn-primary">Part 4</button>
-            <button className="btn btn-primary">Part 5</button>
-            <button className="btn btn-primary">Part 6</button>
-            <button className="btn btn-primary">Part 7</button>
+            <button className="btn btn-primary">{t("Users.Part-1")}</button>
+            <button className="btn btn-primary">{t("Users.Part-2")}</button>
+            <button className="btn btn-primary">{t("Users.Part-3")}</button>
+            <button className="btn btn-primary">{t("Users.Part-4")}</button>
+            <button className="btn btn-primary">{t("Users.Part-5")}</button>
+            <button className="btn btn-primary">{t("Users.Part-6")}</button>
+            <button className="btn btn-primary">{t("Users.Part-7")}</button>
           </div>
           <div className="q-left__desOfPart">{quizzTittle}</div>
           <Questions
@@ -142,7 +144,7 @@ const ListQuestionByQuizzId = (props) => {
                 }
               }}
             >
-              Prev
+              {t("Users.Prev")}
             </button>
             <button
               className="btn btn-primary"
@@ -150,10 +152,10 @@ const ListQuestionByQuizzId = (props) => {
                 if (index + 1 < listQuestions.length) setIndex(index + 1);
               }}
             >
-              Next
+              {t("Users.Next")}
             </button>
             <button className="btn btn-success" onClick={() => submitData()}>
-              Submit
+              {t("Users.Submit")}
             </button>
           </div>
         </div>

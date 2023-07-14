@@ -10,7 +10,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "react-toastify/dist/ReactToastify.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import Language from "../Header/Language";
+import { useTranslation, Trans } from "react-i18next";
 const Admin = (props) => {
+  const { t } = useTranslation();
   const [collapsed, setcollapsed] = useState(false);
   return (
     <div className="admin-container">
@@ -31,9 +33,12 @@ const Admin = (props) => {
           <div className="divSetting">
             {" "}
             <Language />
-            <NavDropdown title="Setting" id="basic-nav-dropdown">
-              <NavDropdown.Item>Profile</NavDropdown.Item>
-              <NavDropdown.Item>Log out</NavDropdown.Item>
+            <NavDropdown
+              title={t("Admin.header.Setting")}
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item>{t("Admin.header.Profile")}</NavDropdown.Item>
+              <NavDropdown.Item>{t("Admin.header.Logout")}</NavDropdown.Item>
             </NavDropdown>
           </div>
         </div>

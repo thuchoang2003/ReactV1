@@ -21,9 +21,11 @@ import {
 import { IoIosPaper } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 const Sidebar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <>
       <ProSidebar
@@ -54,7 +56,7 @@ const Sidebar = (props) => {
         <SidebarContent>
           <Menu iconShape="circle">
             <MenuItem icon={<FaTachometerAlt />}>
-              Dashboard
+              {t("Admin.Sidebar.Dashboard")}
               <Link to="/admins"></Link>
             </MenuItem>
           </Menu>
@@ -62,21 +64,21 @@ const Sidebar = (props) => {
             <SubMenu
               // suffix={<span className="badge yellow">3</span>}
               icon={<FaGem />}
-              title="Features"
+              title={t("Admin.Sidebar.Features")}
             >
               <MenuItem>
                 {" "}
-                Quản Lý Users
+                {t("Admin.Sidebar.ManagerUser")}
                 <Link to="/admins/manage-users"></Link>
               </MenuItem>
               <MenuItem>
                 {" "}
-                Quản Lý Bài Quizz
+                {t("Admin.Sidebar.ManagerQuizz")}
                 <Link to="/admins/manage-quizz"></Link>
               </MenuItem>
               <MenuItem>
                 {" "}
-                Quản lý Câu Hỏi
+                {t("Admin.Sidebar.ManagerQuestion")}
                 <Link to="/admins/manage-questions"></Link>
               </MenuItem>
             </SubMenu>

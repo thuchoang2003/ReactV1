@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-
+import { useTranslation, Trans } from "react-i18next";
 const TableUser = (props) => {
   const { listUsers } = props;
-
+  const { t } = useTranslation();
   return (
     <>
       <table class="table table-hover table-bordered">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{t("ManagerUser.ID")}</th>
+            <th scope="col">{t("ManagerUser.Name")}</th>
+            <th scope="col">{t("ManagerUser.Role")}</th>
+            <th scope="col">{t("ManagerUser.Actions")}</th>
           </tr>
         </thead>
         <tbody>
@@ -46,18 +46,20 @@ const TableUser = (props) => {
                         gap: "10px",
                       }}
                     >
-                      <button className="btn btn-secondary">View</button>
+                      <button className="btn btn-secondary">
+                        {t("ManagerUser.View")}
+                      </button>
                       <button
                         className="btn btn-info"
                         onClick={() => props.handleClickBtnUser(item)}
                       >
-                        Edit
+                        {t("ManagerUser.Edit")}
                       </button>
                       <button
                         className="btn btn-danger"
                         onClick={() => props.handleClickBtnDeleteUser(item)}
                       >
-                        Delete
+                        {t("ManagerUser.Delete")}
                       </button>
                     </div>
                   </td>

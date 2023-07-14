@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { getUserWithPage } from "../../services/userServices.js";
-
+import { useTranslation, Trans } from "react-i18next";
 const PaginatedItems = ({ itemsPerPage }) => {
   const [currentItems, setCurrentItems] = useState(null);
 
@@ -13,6 +13,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
 };
 
 const TableUserWithPage = (props) => {
+  const { t } = useTranslation();
   const { listUsers, pageLimit, getAllUserWithPage, pageCount } = props;
   const handlePageClick = async (event) => {
     getAllUserWithPage(event.selected + 1, pageLimit);
@@ -24,9 +25,9 @@ const TableUserWithPage = (props) => {
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{t("ManagerUser.Name")}</th>
+            <th scope="col">{t("ManagerUser.Role")}</th>
+            <th scope="col">{t("ManagerUser.Actions")}</th>
           </tr>
         </thead>
         <tbody>
@@ -61,18 +62,20 @@ const TableUserWithPage = (props) => {
                         gap: "10px",
                       }}
                     >
-                      <button className="btn btn-secondary">View</button>
+                      <button className="btn btn-secondary">
+                        {t("ManagerUser.View")}
+                      </button>
                       <button
                         className="btn btn-info"
                         onClick={() => props.handleClickBtnUser(item)}
                       >
-                        Edit
+                        {t("ManagerUser.Edit")}
                       </button>
                       <button
                         className="btn btn-danger"
                         onClick={() => props.handleClickBtnDeleteUser(item)}
                       >
-                        Delete
+                        {t("ManagerUser.Delete")}
                       </button>
                     </div>
                   </td>
@@ -84,12 +87,12 @@ const TableUserWithPage = (props) => {
       <PaginatedItems itemsPerPage={4} />
       <div className="divPaginate">
         <ReactPaginate
-          nextLabel="next >"
+          nextLabel={t("ManagerUser.Next") + " >"}
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
           pageCount={pageCount}
-          previousLabel="< previous"
+          previousLabel={" < " + t("ManagerUser.Previous")}
           pageClassName="page-item"
           pageLinkClassName="page-link"
           previousClassName="page-item"

@@ -1,7 +1,8 @@
 import { useState } from "react";
-
+import { useTranslation, Trans } from "react-i18next";
 const Questions = (props) => {
   const { data, index } = props;
+  const { t } = useTranslation();
   const handleClick = (event, questionId, answerId) => {
     props.handleClickInput(questionId, answerId);
   };

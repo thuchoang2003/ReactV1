@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { getAllQuizzByUser } from "../../services/userServices.js";
 import "../../assets/scss/ListQuiz.scss";
 import { useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 const ListQuizz = (props) => {
   const [listQuizz, setListQuizz] = useState("");
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
   useEffect(() => {
     getListQuizz();
@@ -44,7 +45,8 @@ const ListQuizz = (props) => {
                       });
                     }}
                   >
-                    Start Now
+                    {t("Users.StartNow")}
+                    {/* Start Now */}
                   </button>
                 </div>
               </div>

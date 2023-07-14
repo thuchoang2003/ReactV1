@@ -6,5 +6,78 @@
       "login": "Get's started. It's free",
       "user": "Doing Quizz"
     }
+  },
+  "header": {
+    "home": "Home",
+    "Users": "Users",
+    "Admin": "Admin",
+    "Setting": "Setting",
+    "Login": "Log in",
+    "Logout": "Log out",
+    "Signup": "Sign up",
+    "Profile": "Profile"
+  },
+  "Users": {
+    "StartNow": "Start Now",
+    "Part-1": "Part 1",
+    "Part-2": "Part 2",
+    "Part-3": "Part 3",
+    "Part-4": "Part 4",
+    "Part-5": "Part 5",
+    "Part-6": "Part 6",
+    "Part-7": "Part 7",
+    "Prev": "Prev",
+    "Next": "Next",
+    "Submit": "Submit"
+  },
+  "Admin": {
+    "Dashboard": {
+      "TotalUser": "Total User",
+      "TotalAdmin": "Total Admin",
+      "TotalQuizzes": "Total Quizzes",
+      "TotalQuestions": "Total Questions",
+      "Title": "Analytisc Dashboard",
+      "chart": {
+        "name1": "Quizzes",
+        "name2": "Questions",
+        "name3": "Users"
+      }
+    },
+    "header": {
+      "Setting": "Setting",
+      "Profile": "Profile",
+      "Logout": "Log out"
+    },
+    "Sidebar": {
+      "Dashboard": "dashboard",
+      "Features": "Features",
+      "ManagerUser": "Manager User",
+      "ManagerQuizz": "Manager Quizzes",
+      "ManagerQuestion": "Manager Questions",
+      "DetailInfor": "Detail Information"
+    }
+  },
+  "ManagerUser": {
+    "title": "Manager User",
+    "AddNewUser": "Add New User",
+    "ID": "ID",
+    "Name": "Name",
+    "Role": "Role",
+    "Actions": "Actions",
+    "View": "View",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Previous": "Previous",
+    "Next": "Next"
+  },
+  "ModalAddNewUser": {
+    "title": "Add New User",
+    "Email": "Email",
+    "Password": "Password",
+    "Username": "Username",
+    "Role": "Role",
+    "Upload": "Upload file image",
+    "Close": "Close",
+    "Save": "Save"
   }
 }
