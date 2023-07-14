@@ -153,6 +153,10 @@ const postLogout = (email, refresh_token) => {
   let response = instance.post("/logout", data);
   return response;
 };
+const getAllDataOverview = () => {
+  let response = instance.get("/overview");
+  return response;
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -175,4 +179,5 @@ export {
   getAllQuestionAndAnswer,
   assignQuizzToUser,
   postLogout,
+  getAllDataOverview,
 };

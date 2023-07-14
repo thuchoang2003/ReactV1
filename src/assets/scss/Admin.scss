@@ -10,7 +10,21 @@
     height: 100vh;
     // overflow: scroll;
     .admin-header {
-      height: 40px;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      span {
+        svg {
+          cursor: pointer;
+          font-size: 25px;
+        }
+      }
+      .divSetting {
+        display: flex;
+        margin-right: 20px;
+      }
     }
     .admin-main {
       height: calc(100vh - 40px);

@@ -91,6 +91,7 @@ const ListQuestionByQuizzId = (props) => {
             item.answers.isSelected = false;
             arrayAnswer.push(item.answers);
           });
+          arrayAnswer = _.orderBy(arrayAnswer, ["id"], ["asc"]);
           let object = {
             questionId: key,
             description: questionDescription,

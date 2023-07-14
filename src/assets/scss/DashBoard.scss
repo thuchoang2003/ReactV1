@@ -1,0 +1,62 @@
+.dashboard-container {
+  padding: 15px;
+  .title {
+    font-size: 25px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+  }
+  .content {
+    display: flex;
+    padding-top: 20px;
+    .c-left {
+      width: 50%;
+      height: 600px;
+      // border: 1px solid red;
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      align-content: space-evenly;
+      .c-left__item {
+        width: 40%;
+        height: 40%;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        border-radius: 5%;
+        .text-1 {
+          width: 50%;
+
+          height: 20%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 27px;
+          font-weight: 600;
+        }
+        .text-2 {
+          width: 50%;
+
+          height: 20%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 23px;
+          font-weight: 500;
+        }
+      }
+    }
+    .c-right {
+      width: 50%;
+
+      height: 600px;
+      .barchart {
+        width: 500px;
+        height: 500px;
+      }
+    }
+  }
+}
