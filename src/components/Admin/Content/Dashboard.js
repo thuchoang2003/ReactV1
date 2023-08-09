@@ -78,7 +78,7 @@ const Dashboard = (props) => {
           </div>
         </div>
         <div className="c-right">
-          <ResponsiveContainer width={"95%"} height={"100%"}>
+          <ResponsiveContainer width={"95%"} height={"95%"}>
             <BarChart data={dataChart}>
               {/* <CartesianGrid strokeDasharray="3 3" /> */}
               <XAxis dataKey="name" />

@@ -58,7 +58,7 @@ const Login = () => {
         <div className="login-main__text">Hello,who's this?</div>
         <div className="login-main__form">
           <Form>
-            <Form.Group className="mb-3 " controlId="formGroupEmail">
+            <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label className="login-main__form--tittle">
                 Email address
               </Form.Label>
